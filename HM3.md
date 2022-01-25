@@ -50,25 +50,28 @@ https://hub.docker.com/r/panmonster/netorep
 
 ## Решение 2
 
-- Высоконагруженное монолитное java веб-приложение;
-Для тяжеловесных приложений логично использовать вилртуальную или физическую машину
-Nodejs веб-приложение;
+- Высоконагруженное монолитное java веб-приложение;  
+Для тяжеловесных приложений логично использовать виртуальную или физическую машину
+
+- Nodejs веб-приложение;  
 Докер будет идеальным вариантом и позволит быстро разворачивать приложение и все необходимые библиотеки.
 
-- Мобильное приложение c версиями для Android и iOS;
+- Мобильное приложение c версиями для Android и iOS;  
 Упоминание о использовании докера как основы для разработки мобильных приложений я не нашел, по итогу он используется больше как исключение из правил, а основа ложится как на физические, так и на виртуальные машины.
 
-- Шина данных на базе Apache Kafka;
+- Шина данных на базе Apache Kafka;  
 Использование контейнеров в проектах с шиной данных на базе Apache Kafka, так же выгодно, это позволяет быстро разворачивать приложения на основных и тестовых серверах, и при необходимости быстро восстановить или откатить изменения.
-Elasticsearch кластер для реализации логирования продуктивного веб-приложения - три ноды elasticsearch, два logstash и две ноды kibana;
+
+- Elasticsearch кластер для реализации логирования продуктивного веб-приложения - три ноды elasticsearch, два logstash и две ноды kibana;  
 Для данной инфроструктуры тоже подойдет докер он проще удобнее и менее ресурсозатратен чем альтернатива с виртуальной машиной.
 
-- Мониторинг-стек на базе Prometheus и Grafana;
+- Мониторинг-стек на базе Prometheus и Grafana;  
 Нашел информацию о том, что node_exporter и некоторые другие решения по предоставлению метрик из-за взаимодействий с ядром системы более проблемно работают в контейнерах, но Prometheus и Grafana вполне возможно использовать в докере.
 
-- MongoDB, как основное хранилище данных для java-приложения;
+- MongoDB, как основное хранилище данных для java-приложения;  
 Сама MongoDB рекомендует использовать докер да и сам контейнер присутствует в их репозитории.
-Gitlab сервер для реализации CI/CD процессов и приватный (закрытый) Docker Registry.
+
+- Gitlab сервер для реализации CI/CD процессов и приватный (закрытый) Docker Registry.  
 Серевер Gitlab будет проще развернуть на виртуальной машине так как нет никаких предпосылок использования докера все что нужно для данного сервера это стабильный бекап и соединение.
 Если в компании повсеместно используются контейнеры - тогда, может, будет удобней Docker, т.к. инженерам это будет привычней.
 
@@ -83,27 +86,27 @@ Gitlab сервер для реализации CI/CD процессов и пр
 
 ## Решение 3
 
-- Создаю контейнер с debian
-vagrant@server2:/data$ docker run -t -d -v /data:/data --network host --name my_debian debian
-3472dc8cffe4ae3a107827898a90d5c90378c76ac3d0c4b774f7bc781fef91b4
+- Создаю контейнер с debian  
+vagrant@server2:/data$ docker run -t -d -v /data:/data --network host --name my_debian debian  
+3472dc8cffe4ae3a107827898a90d5c90378c76ac3d0c4b774f7bc781fef91b4  
 
-- Создаю контейнер с centos
-vagrant@server2:/data$ docker run -t -d -v /data:/data --network host --name my_centos centos
-55b01f2b7ab29d9247c6302898099011cac03844c74467b1ef5f4404df9dbb59
+- Создаю контейнер с centos  
+vagrant@server2:/data$ docker run -t -d -v /data:/data --network host --name my_centos centos  
+55b01f2b7ab29d9247c6302898099011cac03844c74467b1ef5f4404df9dbb59  
 
-- vagrant@server2:/data$ docker ps
-CONTAINER ID   IMAGE     COMMAND       CREATED          STATUS          PORTS     NAMES
-3472dc8cffe4   debian    "bash"        45 seconds ago   Up 44 seconds             my_debian
-55b01f2b7ab2   centos    "/bin/bash"   5 minutes ago    Up 5 minutes              my_centos
+- vagrant@server2:/data$ docker ps  
+CONTAINER ID   IMAGE     COMMAND       CREATED          STATUS          PORTS     NAMES  
+3472dc8cffe4   debian    "bash"        45 seconds ago   Up 44 seconds             my_debian  
+55b01f2b7ab2   centos    "/bin/bash"   5 minutes ago    Up 5 minutes              my_centos  
 
-- Создаю документ test2 на my_debian
-vagrant@server2:/data$ docker exec -it my_debian nano /data/test2
-vagrant@server2:/data$ docker exec -it my_debian ls /data
+- Создаю документ test2 на my_debian  
+vagrant@server2:/data$ docker exec -it my_debian nano /data/test2  
+vagrant@server2:/data$ docker exec -it my_debian ls /data  
 test2
 
-- Создаю test1 на локальной машине
-vagrant@server2:/data$ sudo nano test1
-vagrant@server2:/data$ ls
+- Создаю test1 на локальной машине  
+vagrant@server2:/data$ sudo nano test1  
+vagrant@server2:/data$ ls  
 test1  test2
 
 - Проверяю наличие этих файлов в my_centos
