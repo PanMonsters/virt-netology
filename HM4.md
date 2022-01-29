@@ -10,7 +10,7 @@
 
 ## Решение 1
 
-https://hub.docker.com/r/panmonster/netorep
+![image](https://github.com/PanMonsters/virt-netology/blob/6a38546c9d42b0aa88fdc834f0633ae4a0392c82/image/%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%201.png)
 
 ---
 ## Задача 2
@@ -19,7 +19,7 @@ https://hub.docker.com/r/panmonster/netorep
 
 ## Решение 2
 
-https://hub.docker.com/r/panmonster/netorep
+![image](https://github.com/PanMonsters/virt-netology/blob/6a38546c9d42b0aa88fdc834f0633ae4a0392c82/image/%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%202.png)
 
 ---
 ## Задача 3
@@ -28,4 +28,5 @@ https://hub.docker.com/r/panmonster/netorep
 
 ## Решение 3
 
-https://hub.docker.com/r/panmonster/netorep
+![image](https://github.com/PanMonsters/virt-netology/blob/6a38546c9d42b0aa88fdc834f0633ae4a0392c82/image/%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%203.png)
+
