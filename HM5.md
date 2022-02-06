@@ -36,6 +36,6 @@ docker node ls и docker service ls
 ```
 ## Решение 2 и 3
 
-![image](https://github.com/PanMonsters/virt-netology/blob/6a38546c9d42b0aa88fdc834f0633ae4a0392c82/image/%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%203.png)
+![image](https://github.com/PanMonsters/virt-netology/blob/5ed38fa2df23b057ffa5971080287f9f629256c3/image/%D0%97%D0%90%D0%94%D0%90%D0%9D%D0%98%D0%95%202.2.png)
 
 

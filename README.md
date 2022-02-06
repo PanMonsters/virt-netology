@@ -1,4 +1,4 @@
-
+v
 # Виртуализация, базы данных и Terraform
 ## Домашнее задание к занятию:
 
@@ -18,3 +18,5 @@
   <a href="https://github.com/PanMonsters/virt-netology/blob/f66a02b53a25ac522f3a2b2c40e9a32d9e68369a/HM4.md">5.4. Оркестрация группой Docker контейнеров на примере Docker Compose</a>.
 </p>
 
+  <a href="https://github.com/PanMonsters/virt-netology/blob/5ed38fa2df23b057ffa5971080287f9f629256c3/HM5.md">5.5. Оркестрация кластером Docker контейнеров на примере Docker Swarm</a>.
+</p>
