@@ -1,4 +1,4 @@
-v
+
 # Виртуализация, базы данных и Terraform
 ## Домашнее задание к занятию:
 
@@ -19,4 +19,7 @@ v
 </p>
 
   <a href="https://github.com/PanMonsters/virt-netology/blob/874eacae0f572508fa095d22b77bf547b464330f/HM5.md">5.5. Оркестрация кластером Docker контейнеров на примере Docker Swarm</a>.
+</p>
+
+ <a href="https://github.com/PanMonsters/virt-netology/blob/98f16bde4f2f1d7de3ee3798353d55ce302c3977/HM6.md">6.1. Типы и структура СУБД</a>.
 </p>
