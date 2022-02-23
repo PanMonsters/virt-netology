@@ -23,3 +23,9 @@
 
  <a href="https://github.com/PanMonsters/virt-netology/blob/98f16bde4f2f1d7de3ee3798353d55ce302c3977/HM6.md">6.1. Типы и структура СУБД</a>.
 </p>
+
+ <a href="https://github.com/PanMonsters/virt-netology/blob/5d7c640e989e919fb8cd4405707c85a1d4afb503/HM7.md">6.2. SQL</a>.
+</p>
+
+ <a href="https://github.com/PanMonsters/virt-netology/blob/5d7c640e989e919fb8cd4405707c85a1d4afb503/HM8.md">6.3. MySQL</a>.
+</p>
