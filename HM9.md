@@ -189,7 +189,7 @@ test_database.sql  test_dump.sql
 ``` 
 - Как бы вы доработали бэкап-файл, чтобы добавить уникальность значения столбца title для таблиц test_database? 
 ``` 
-# Присваиваю столбцу  title неповторяемые уникальные значения
+# Присваиваю столбцу  title неповторяемые уникальные значения UNIQUE
 --
 -- Name: orders; Type: TABLE; Schema: public; Owner: postgres
 --
