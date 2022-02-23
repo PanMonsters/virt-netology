@@ -274,7 +274,7 @@ vagrant@ubuntu-16:~$ docker run --network host --name postgres_test2 -e POSTGRES
 vagrant@ubuntu-16:~$ docker exec -it postgres_test2 bash
 
 # Востановление из бекапа необходимой базы
-root@ubuntu-16:/# psql -U postgres -W test_db < /var/lib/postgresql/backup/test_db.sql,
+root@ubuntu-16:/# psql -U postgres -W test_db < /var/lib/postgresql/backup/test_db.sql
 ```
 Проверяю наличие базы и таблиц
 
