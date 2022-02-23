@@ -11,7 +11,7 @@
 </p>
 
 <p>
-  <a href="https://github.com/PanMonsters/virt-netology/blob/f66a02b53a25ac522f3a2b2c40e9a32d9e68369a/HM3.md">5.3. Введение. Экосистема. Архитектура. Жизненный цикл Docker контейнера</a>.
+  <a href="https://github.com/PanMonsters/virt-netology/blob/9a91f2c6913904deec9c1dbe85118abc26762b6a/HM3.md">5.3. Введение. Экосистема. Архитектура. Жизненный цикл Docker контейнера</a>.
 </p>
 
 <p>
