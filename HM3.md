@@ -109,7 +109,6 @@ vagrant@server2:/data$ sudo nano test1
 vagrant@server2:/data$ ls  
 test1  test2
 
-- Проверяю наличие этих файлов в my_centos
-vagrant@server2:/data$ docker exec -it my_centos ls /data
-test1  test2
-
+- Проверяю наличие этих файлов в my_centos  
+vagrant@server2:/data$ docker exec -it my_centos ls /data  
+test1  test2  
