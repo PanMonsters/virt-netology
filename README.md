@@ -29,3 +29,6 @@
 
  <a href="https://github.com/PanMonsters/virt-netology/blob/5d7c640e989e919fb8cd4405707c85a1d4afb503/HM8.md">6.3. MySQL</a>.
 </p>
+
+ <a href="https://github.com/PanMonsters/virt-netology/blob/9702dbd5705236baead6f501dc8896edae582fd7/HM9.md">6.4. PostgreSQL</a>.
+</p>
