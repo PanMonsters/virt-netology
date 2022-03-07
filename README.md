@@ -32,3 +32,6 @@
 
  <a href="https://github.com/PanMonsters/virt-netology/blob/9702dbd5705236baead6f501dc8896edae582fd7/HM9.md">6.4. PostgreSQL</a>.
 </p>
+
+ <a href="https://github.com/PanMonsters/virt-netology/blob/78ffac62121080738eaa238b2c27248c213338ca/HM10.md">6.5. Elasticsearch</a>.
+</p>
