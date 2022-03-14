@@ -35,3 +35,6 @@
 
  <a href="https://github.com/PanMonsters/virt-netology/blob/78ffac62121080738eaa238b2c27248c213338ca/HM10.md">6.5. Elasticsearch</a>.
 </p>
+
+ <a href="https://github.com/PanMonsters/virt-netology/blob/cd3335998011d5a30f19aa78a635de18109a2ff4/HM11.md">6.6. Troubleshooting</a>.
+</p>
