@@ -38,3 +38,12 @@
 
  <a href="https://github.com/PanMonsters/virt-netology/blob/cd3335998011d5a30f19aa78a635de18109a2ff4/HM11.md">6.6. Troubleshooting</a>.
 </p>
+
+ <a href="https://github.com/PanMonsters/virt-netology/blob/87cd47c969597402d201e3ec4c2e4fcf07ca755b/HM12.md">7.1. Инфраструктура как код</a>.
+</p>
+
+ <a href="https://github.com/PanMonsters/virt-netology/blob/87cd47c969597402d201e3ec4c2e4fcf07ca755b/HM13.md">7.2. Облачные провайдеры и синтаксис Terraform</a>.
+</p>
+
+ <a href="https://github.com/PanMonsters/virt-netology/blob/87cd47c969597402d201e3ec4c2e4fcf07ca755b/HM14.md">7.3. Основы и принцип работы Терраформ</a>.
+</p>
