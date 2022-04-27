@@ -47,3 +47,6 @@
 
  <a href="https://github.com/PanMonsters/virt-netology/blob/87cd47c969597402d201e3ec4c2e4fcf07ca755b/HM14.md">7.3. Основы и принцип работы Терраформ</a>.
 </p>
+
+ <a href="https://github.com/PanMonsters/virt-netology/blob/dcea42ee8a25cf801c6e6e867ab93a7504af2418/DZ_8.1.md">Домашнее задание к занятию "8.1. Введение в Ansible"</a>.
+</p>
