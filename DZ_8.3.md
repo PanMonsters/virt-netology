@@ -15,139 +15,27 @@
 
 ```
 ---
-- name: Install Nginx
-  hosts: lighthouse
-  handlers:
-    - name: Start nginx
-      become: true
-      ansible.builtin.command: nginx
-    - name: Reload nginx
-      become: true
-      ansible.builtin.command: nginx -s reload
-  tasks:
-    - name: NGINX | Install eper-release
-      become: true
-      ansible.builtin.yum:
-        name: epel-release
-        state: present
-    - name: NGINX | Install Nginx
-      become: true
-      ansible.builtin.yum:
-        name: nginx
-        state: present
-      notify: Start nginx
-    - name: NGINX | Create general config
-      become: true
-      ansible.builtin.template:
-        src: templates/nginx.conf.j2
-        dest: /etc/nginx/nginx.conf
-        mode: 0644
-      notify: Reload nginx
-- name: Install Lighthouse
-  hosts: lighthouse
-  handlers:
-    - name: Reload nginx
-      become: true
-      ansible.builtin.command: nginx -s reload
-  pre_tasks:
-    - name: Lighthouse | install git
-      become: true
-      ansible.builtin.yum:
-        name: git
-        state: present
-  tasks:
-    - name: Lighthouse | Copy from git
-      become: true
-      ansible.builtin.git:
-        repo: "{{ lighthouse_vcs }}"
-        version: master
-        dest: "{{ lighthouse_location_dir }}"
-    - name: Lighthouse | Create lighthouse config
-      become: true
-      ansible.builtin.template:
-        src: lighthouse.conf.j2
-        dest: /etc/nginx/conf.d/default.conf
-        mode: 0644     
-      notify: Reload nginx
-- name: Install Clickhouse
-  hosts: clickhouse
-# handlers часть которая запрашивается различными плеями при её упоменании через  notify: Start clickhouse service
-  handlers:
-    - name: Start clickhouse service
-      become: true
-      ansible.builtin.service:
-        name: clickhouse-server
-        state: restarted
-  tasks:
-# block парамет говорящий об ипользовании цикла в этом плее например кусгксу
-    - block:
-        - name: Get clickhouse distrib
-          ansible.builtin.get_url:
-            url: "https://packages.clickhouse.com/rpm/stable/{{ item }}-{{ clickhouse_version }}.noarch.rpm"
-            dest: "./{{ item }}-{{ clickhouse_version }}.rpm"
-          with_items: "{{ clickhouse_packages }}"
-# rescue блок использующийся появлении ошибки в основном плее и перезапуске его с выданными параметрами
-      rescue:
-        - name: Get clickhouse distrib
-          ansible.builtin.get_url:
-            url: "https://packages.clickhouse.com/rpm/stable/clickhouse-common-static-{{ clickhouse_version }}.x86_64.rpm"
-            dest: "./clickhouse-common-static-{{ clickhouse_version }}.rpm"
-    - name: Install clickhouse packages
-      become: true
-      ansible.builtin.yum:
-        name:
-          - clickhouse-common-static-{{ clickhouse_version }}.rpm
-          - clickhouse-client-{{ clickhouse_version }}.rpm
-          - clickhouse-server-{{ clickhouse_version }}.rpm
-      notify: Start clickhouse service
-    - name: Flash handlers
-      ansible.builtin.meta: flush_handlers
-    - name: Pause for 10 second for start servises
-      pause:
-        seconds: 10
-    - name: Create database
-      ansible.builtin.command: "clickhouse-client -h 127.0.0.1 -q 'create database logs;'"
-      register: create_db
-      failed_when: create_db.rc != 0 and create_db.rc !=82
-      changed_when: create_db.rc == 0
-    - name: CLICKHOUSE | Create general config
-      become: true
-      ansible.builtin.template:
-        src: templates/config.xml.j2
-        dest: /etc/clickhouse-server/config.xml
-        mode: 0644
-      notify: Start clickhouse service
-- name: Install Vector
-  hosts: vector
-  tasks:
-    - name: VECTOR | Install rpm
-      become: true
-      ansible.builtin.yum:
-        name: "{{ vector_url }}"
-        state: present
-    - name: VECTOR | Template config
-      become: true
-      ansible.builtin.template:
-        src: templates/vector.yml.j2
-        dest: vector.yml
-        mode: "0644"
-        owner: "{{ ansible_user_id }}"
-        group: "{{ ansible_user_gid }}"
-        validate: vector validate --no-environment --config-yaml %s
-    - name: VECTOR | Create systemd unit
-      become: true
-      ansible.builtin.template:
-        src: templates/vector.service.j2
-        dest: /etc/systemd/system/vector.service
-        mode: "0644"
-        owner: "{{ ansible_user_id }}"
-        group: "{{ ansible_user_gid }}"
-    - name: VECTOR | Start service
-      become: true
-      ansible.builtin.systemd:
-        name: vector
-        state: started
-        daemon_reload: true
+clickhouse:
+  hosts:
+    clickhouse-01:
+      ansible_host: 51.250.88.118
+      ansible_ssh_user: centos
+#      ansible_ssh_pass: vagrant
+      
+lighthouse:
+  hosts:
+    clickhouse-02:
+      ansible_host: 51.250.82.170
+      ansible_ssh_user: centos    
+#      ansible_ssh_pass: vagrant
+      
+vector:
+  hosts:
+    clickhouse-03:
+      ansible_host: 51.250.72.159
+      ansible_ssh_user: centos
+#      ansible_ssh_pass: vagrant
+
 ```
 
 </details>
@@ -156,7 +44,12 @@
 
 <details><summary></summary>
 
-Ошибок не было обнаружено.
+Уменьшить данную строку не имеется возможности, но плейбук отрабатывает с ней без проблем.
+
+panmonster@PanMonster-PC:~/Ansible_8.2/playbook$ ansible-lint site.yml
+[204] Lines should be no longer than 160 chars
+site.yml:98
+      ansible.builtin.command: "clickhouse-client -h 127.0.0.1 -q 'CREATE TABLE IF NOT EXISTS  logs.access_logs ( message String ) ENGINE = MergeTree() ORDER BY tuple()'"
 
 </details>
 
@@ -171,15 +64,19 @@ PLAY [Install Nginx] ***********************************************************
 
 TASK [Gathering Facts] ************************************************************************************************************************************************************************************
 ok: [clickhouse-02]
+ok: [clickhouse-03]
 
 TASK [NGINX | Install eper-release] ***********************************************************************************************************************************************************************
 ok: [clickhouse-02]
+ok: [clickhouse-03]
 
 TASK [NGINX | Install Nginx] ******************************************************************************************************************************************************************************
 ok: [clickhouse-02]
+ok: [clickhouse-03]
 
 TASK [NGINX | Create general config] **********************************************************************************************************************************************************************
 ok: [clickhouse-02]
+ok: [clickhouse-03]
 
 PLAY [Install Lighthouse] *********************************************************************************************************************************************************************************
 
@@ -221,8 +118,16 @@ ok: [clickhouse-01]
 TASK [Create database] ************************************************************************************************************************************************************************************
 skipping: [clickhouse-01]
 
+TASK [Create table] ***************************************************************************************************************************************************************************************
+skipping: [clickhouse-01]
+
 TASK [CLICKHOUSE | Create general config] *****************************************************************************************************************************************************************
 ok: [clickhouse-01]
+
+PLAY [Install Nginx (vector)] *****************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] ************************************************************************************************************************************************************************************
+ok: [clickhouse-03]
 
 PLAY [Install Vector] *************************************************************************************************************************************************************************************
 
@@ -239,12 +144,12 @@ TASK [VECTOR | Create systemd unit] ********************************************
 ok: [clickhouse-03]
 
 TASK [VECTOR | Start service] *****************************************************************************************************************************************************************************
-changed: [clickhouse-03]
+ok: [clickhouse-03]
 
 PLAY RECAP ************************************************************************************************************************************************************************************************
-clickhouse-01              : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=1    ignored=0   
+clickhouse-01              : ok=5    changed=0    unreachable=0    failed=0    skipped=2    rescued=1    ignored=0   
 clickhouse-02              : ok=8    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
-clickhouse-03              : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+clickhouse-03              : ok=10   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 ```
 
 </details>
@@ -260,16 +165,19 @@ PLAY [Install Nginx] ***********************************************************
 
 TASK [Gathering Facts] *********************************************************
 ok: [clickhouse-02]
+ok: [clickhouse-03]
 
 TASK [NGINX | Install eper-release] ********************************************
-ok: [clickhouse-02]
+changed: [clickhouse-02]
+changed: [clickhouse-03]
 
 TASK [NGINX | Install Nginx] ***************************************************
+changed: [clickhouse-03]
 changed: [clickhouse-02]
 
 TASK [NGINX | Create general config] *******************************************
 --- before: /etc/nginx/nginx.conf
-+++ after: /home/panmonster/.ansible/tmp/ansible-local-5586xy2xc6b3/tmpe40f0x71/nginx.conf.j2
++++ after: /home/panmonster/.ansible/tmp/ansible-local-1003255tdizic/tmpfyxm99ac/nginx.conf.j2
 @@ -1,9 +1,6 @@
 -# For more information on configuration, see:
 -#   * Official English Documentation: http://nginx.org/en/docs/
@@ -302,12 +210,48 @@ TASK [NGINX | Create general config] *******************************************
      }
 
 changed: [clickhouse-02]
+--- before: /etc/nginx/nginx.conf
++++ after: /home/panmonster/.ansible/tmp/ansible-local-1003255tdizic/tmp0b1ycesr/nginx.conf.j2
+@@ -1,9 +1,6 @@
+-# For more information on configuration, see:
+-#   * Official English Documentation: http://nginx.org/en/docs/
+-#   * Official Russian Documentation: http://nginx.org/ru/docs/
++user root;
++worker_processes 1;
+ 
+-user nginx;
+-worker_processes auto;
+ error_log /var/log/nginx/error.log;
+ pid /run/nginx.pid;
+ 
+@@ -36,7 +33,7 @@
+     include /etc/nginx/conf.d/*.conf;
+ 
+     server {
+-        listen       80;
++	listen       80;
+         listen       [::]:80;
+         server_name  _;
+         root         /usr/share/nginx/html;
+@@ -48,7 +45,7 @@
+         location = /404.html {
+         }
+ 
+-        error_page 500 502 503 504 /50x.html;
++	error_page 500 502 503 504 /50x.html;
+         location = /50x.html {
+         }
+     }
+
+changed: [clickhouse-03]
 
 RUNNING HANDLER [Start nginx] **************************************************
+changed: [clickhouse-03]
 changed: [clickhouse-02]
 
 RUNNING HANDLER [Reload nginx] *************************************************
 changed: [clickhouse-02]
+changed: [clickhouse-03]
 
 PLAY [Install Lighthouse] ******************************************************
 
@@ -323,7 +267,7 @@ changed: [clickhouse-02]
 
 TASK [Lighthouse | Create lighthouse config] ***********************************
 --- before
-+++ after: /home/panmonster/.ansible/tmp/ansible-local-5586xy2xc6b3/tmpn0pmzn72/lighthouse.conf.j2
++++ after: /home/panmonster/.ansible/tmp/ansible-local-1003255tdizic/tmp5zqntsi3/lighthouse.conf.j2
 @@ -0,0 +1,11 @@
 +server {
 +    listen       80;
@@ -371,9 +315,12 @@ ok: [clickhouse-01]
 TASK [Create database] *********************************************************
 changed: [clickhouse-01]
 
+TASK [Create table] ************************************************************
+changed: [clickhouse-01]
+
 TASK [CLICKHOUSE | Create general config] **************************************
 --- before: /etc/clickhouse-server/config.xml
-+++ after: /home/panmonster/.ansible/tmp/ansible-local-5586xy2xc6b3/tmpfal52o8f/config.xml.j2
++++ after: /home/panmonster/.ansible/tmp/ansible-local-1003255tdizic/tmpdx83uqgi/config.xml.j2
 @@ -183,10 +183,7 @@
      <!-- <listen_host>0.0.0.0</listen_host> -->
  
@@ -392,6 +339,11 @@ changed: [clickhouse-01]
 RUNNING HANDLER [Start clickhouse service] *************************************
 changed: [clickhouse-01]
 
+PLAY [Install Nginx (vector)] **************************************************
+
+TASK [Gathering Facts] *********************************************************
+ok: [clickhouse-03]
+
 PLAY [Install Vector] **********************************************************
 
 TASK [Gathering Facts] *********************************************************
@@ -402,24 +354,24 @@ changed: [clickhouse-03]
 
 TASK [VECTOR | Template config] ************************************************
 --- before
-+++ after: /home/panmonster/.ansible/tmp/ansible-local-5586xy2xc6b3/tmpu08k5otv/vector.yml.j2
++++ after: /home/panmonster/.ansible/tmp/ansible-local-1003255tdizic/tmpkgy494sv/vector.yml.j2
 @@ -0,0 +1,18 @@
 +sinks:
 +    to_clickhouse:
 +        compression: gzip
 +        database: logs
-+        endpoint: http://51.250.66.6:8123
++        endpoint: http://10.128.0.31:8123
 +        healthcheck: false
 +        inputs:
 +        - our_log
 +        skip_unknown_fields: true
-+        table: log
++        table: access_logs
 +        type: clickhouse
 +sources:
 +    our_log:
 +        ignore_older_secs: 600
 +        include:
-+        - /home/aragast/logs/*.log
++        - /var/log/nginx/access.log
 +        read_from: beginning
 +        type: file
 
@@ -427,19 +379,20 @@ changed: [clickhouse-03]
 
 TASK [VECTOR | Create systemd unit] ********************************************
 --- before
-+++ after: /home/panmonster/.ansible/tmp/ansible-local-5586xy2xc6b3/tmpqo5_hfe1/vector.service.j2
-@@ -0,0 +1,11 @@
++++ after: /home/panmonster/.ansible/tmp/ansible-local-1003255tdizic/tmp3yb0oktd/vector.service.j2
+@@ -0,0 +1,12 @@
 +[Unit]
 +Description=Vector service
 +After=network.target
 +Requires=network-online.target
 +[Service]
-+User=centos
-+Group=1000
-+ExecStart=/usr/bin/vector --config-yaml vector.yml --wath-config true
++User=root
++Group=root
++ExecStart=/usr/bin/vector --config-yaml /etc/vector/vector.yml
 +Restart=always
 +[Install]
 +WantedBy=multi-user.target
++
 
 changed: [clickhouse-03]
 
@@ -447,9 +400,9 @@ TASK [VECTOR | Start service] **************************************************
 changed: [clickhouse-03]
 
 PLAY RECAP *********************************************************************
-clickhouse-01              : ok=8    changed=6    unreachable=0    failed=0    skipped=0    rescued=1    ignored=0   
-clickhouse-02              : ok=11   changed=8    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
-clickhouse-03              : ok=5    changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+clickhouse-01              : ok=9    changed=7    unreachable=0    failed=0    skipped=0    rescued=1    ignored=0   
+clickhouse-02              : ok=11   changed=9    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+clickhouse-03              : ok=12   changed=9    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 ```
 
 </details>
@@ -465,15 +418,19 @@ PLAY [Install Nginx] ***********************************************************
 
 TASK [Gathering Facts] ************************************************************************************************************************************************************************************
 ok: [clickhouse-02]
+ok: [clickhouse-03]
 
 TASK [NGINX | Install eper-release] ***********************************************************************************************************************************************************************
 ok: [clickhouse-02]
+ok: [clickhouse-03]
 
 TASK [NGINX | Install Nginx] ******************************************************************************************************************************************************************************
 ok: [clickhouse-02]
+ok: [clickhouse-03]
 
 TASK [NGINX | Create general config] **********************************************************************************************************************************************************************
 ok: [clickhouse-02]
+ok: [clickhouse-03]
 
 PLAY [Install Lighthouse] *********************************************************************************************************************************************************************************
 
@@ -515,8 +472,16 @@ ok: [clickhouse-01]
 TASK [Create database] ************************************************************************************************************************************************************************************
 ok: [clickhouse-01]
 
+TASK [Create table] ***************************************************************************************************************************************************************************************
+changed: [clickhouse-01]
+
 TASK [CLICKHOUSE | Create general config] *****************************************************************************************************************************************************************
 ok: [clickhouse-01]
+
+PLAY [Install Nginx (vector)] *****************************************************************************************************************************************************************************
+
+TASK [Gathering Facts] ************************************************************************************************************************************************************************************
+ok: [clickhouse-03]
 
 PLAY [Install Vector] *************************************************************************************************************************************************************************************
 
@@ -533,12 +498,12 @@ TASK [VECTOR | Create systemd unit] ********************************************
 ok: [clickhouse-03]
 
 TASK [VECTOR | Start service] *****************************************************************************************************************************************************************************
-changed: [clickhouse-03]
+ok: [clickhouse-03]
 
 PLAY RECAP ************************************************************************************************************************************************************************************************
-clickhouse-01              : ok=6    changed=0    unreachable=0    failed=0    skipped=0    rescued=1    ignored=0   
+clickhouse-01              : ok=7    changed=1    unreachable=0    failed=0    skipped=0    rescued=1    ignored=0   
 clickhouse-02              : ok=8    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
-clickhouse-03              : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+clickhouse-03              : ok=10   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 ```
 
 </details>
@@ -547,15 +512,15 @@ clickhouse-03              : ok=5    changed=1    unreachable=0    failed=0    s
 
 <details><summary></summary>
     
-[Ссылка на README.md](https://github.com/PanMonsters/Ansible_8.2/blob/85f00dfb42634172c40ad921faeab5e0e9474ddf/README.md)
+[Ссылка на README.md](https://github.com/PanMonsters/Ansible_8.2/blob/2f73e9501c03a30ca3e8ac2d6fa2176b7ffb5cf2/README.md)
 
 </details>
 
-##### 10. Готовый playbook выложите в свой репозиторий, поставьте тег 08-ansible-02-playbook на фиксирующий коммит, в ответ предоставьте ссылку на него.
+##### 10. Готовый playbook выложите в свой репозиторий, поставьте тег `08-ansible-03-yandex` на фиксирующий коммит, в ответ предоставьте ссылку на него.
      
 <details><summary></summary>
 
-[Ссылка на репозиторий](https://github.com/PanMonsters/Ansible_8.2/tree/85f00dfb42634172c40ad921faeab5e0e9474ddf)
+[Ссылка на репозиторий](https://github.com/PanMonsters/Ansible_8.2/tree/2f73e9501c03a30ca3e8ac2d6fa2176b7ffb5cf2)
 
 </details>
 
