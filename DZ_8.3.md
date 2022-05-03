@@ -44,12 +44,15 @@ vector:
 
 <details><summary></summary>
 
-Уменьшить данную строку не имеется возможности, но плейбук отрабатывает с ней без проблем.
+Уменьшить данную строку не имеется возможности, но плейбук отрабатывает с ней без проблем.  
 
+
+```
 panmonster@PanMonster-PC:~/Ansible_8.2/playbook$ ansible-lint site.yml
 [204] Lines should be no longer than 160 chars
 site.yml:98
       ansible.builtin.command: "clickhouse-client -h 127.0.0.1 -q 'CREATE TABLE IF NOT EXISTS  logs.access_logs ( message String ) ENGINE = MergeTree() ORDER BY tuple()'"
+```
 
 </details>
 
