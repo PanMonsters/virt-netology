@@ -46,7 +46,7 @@
 
 [roles_lighthouse](https://github.com/PanMonsters/roles_lighthouse)
 
-[roles_vector](https://github.com/PanMonsters/roles_vector)
+[roles_vector](https://github.com/PanMonsters/roles-vector)
 
 [playbook](https://github.com/PanMonsters/Ansible_8.4)
 
