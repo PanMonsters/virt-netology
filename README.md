@@ -56,3 +56,6 @@
 
 <a href="https://github.com/PanMonsters/virt-netology/blob/160137c8db3fe2da29e48189d4459775ab5be0aa/DZ_8.3.md">8.3 Использование Yandex Cloud</a>.
 </p>
+
+<a href="https://github.com/PanMonsters/virt-netology/blob/02777a88f20ffb59e5756d5f41b2c56f2b162db7/DZ_8.4.md">8.4 Работа с Roles</a>.
+</p>
