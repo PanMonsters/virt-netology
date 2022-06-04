@@ -77,3 +77,15 @@
 <p>
 <a href="https://github.com/PanMonsters/virt-netology/blob/02777a88f20ffb59e5756d5f41b2c56f2b162db7/DZ_8.4.md">8.4 Работа с Roles</a>.
 </p>
+
+<p>
+<a href="https://github.com/PanMonsters/virt-netology/blob/65b82abc4cda605c48988575e8c480f09bdef858/DZ_8.5.md">8.5 Тестирование Roles</a>.
+</p>
+
+<p>
+<a href="https://github.com/PanMonsters/virt-netology/blob/65b82abc4cda605c48988575e8c480f09bdef858/DZ_8.6.md">8.6 Создание собственных modules</a>.
+</p>
+
+<p>
+<a href="https://github.com/PanMonsters/virt-netology/blob/65b82abc4cda605c48988575e8c480f09bdef858/DZ_9.1.md">9.1 Жизненный цикл ПО</a>.
+</p>
