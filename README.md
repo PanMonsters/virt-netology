@@ -93,3 +93,11 @@
 <p>
 <a href="https://github.com/PanMonsters/virt-netology/blob/c53f382488f2fbd12ab49c20bad3a10cd06f7464/DZ_9.3.md">9.3 Процессы CI/CD</a>.
 </p>
+
+<p>
+<a href="https://github.com/PanMonsters/virt-netology/blob/a77616e7fea9e558dffaa733ff92ba27f0cc1fac/DZ_9.4.md">9.4 Jenkins</a>.
+</p>
+
+<p>
+<a href="https://github.com/PanMonsters/virt-netology/blob/a77616e7fea9e558dffaa733ff92ba27f0cc1fac/DZ_9.5.md">9.5 Teamcity</a>.
+</p>
