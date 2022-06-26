@@ -101,3 +101,11 @@
 <p>
 <a href="https://github.com/PanMonsters/virt-netology/blob/a77616e7fea9e558dffaa733ff92ba27f0cc1fac/DZ_9.5.md">9.5 Teamcity</a>.
 </p>
+
+<p>
+<a href="https://github.com/PanMonsters/virt-netology/blob/9a28538cb7c060d5125c4f0d6c9528b55c47c4c2/DZ_9.6.md">9.6 Gitlab</a>.
+</p>
+
+<p>
+<a href="https://github.com/PanMonsters/virt-netology/blob/9a28538cb7c060d5125c4f0d6c9528b55c47c4c2/DZ_10.1.md">10.1 Зачем и что нужно мониторить</a>.
+</p>
