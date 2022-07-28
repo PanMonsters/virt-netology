@@ -109,3 +109,12 @@
 <p>
 <a href="https://github.com/PanMonsters/virt-netology/blob/9a28538cb7c060d5125c4f0d6c9528b55c47c4c2/DZ_10.1.md">10.1 Зачем и что нужно мониторить</a>.
 </p>
+
+<p>
+<a href="https://github.com/PanMonsters/virt-netology/blob/41fec27be333de677e3af04da8a2a04b18957dec/DZ_10.2.md">10.2 Системы мониторинга</a>.
+</p>
+
+
+# Администрирование и конфигурация Kubernetes
+## Домашнее задание к занятию:
+
