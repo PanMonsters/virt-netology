@@ -118,3 +118,6 @@
 # Администрирование и конфигурация Kubernetes
 ## Домашнее задание к занятию:
 
+<p>
+<a href="https://github.com/PanMonsters/virt-netology/blob/c1ac742fadf29582aa180018c17786b78cdf18d7/DZ_11.1.md">11.1 Введение в микросервисы</a>.
+</p>
