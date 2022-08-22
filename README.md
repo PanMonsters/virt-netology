@@ -129,3 +129,8 @@
 <p>
 <a href="https://github.com/PanMonsters/virt-netology/blob/db9d76f716430b5e97b1f33c9d51fbabeab77e5c/DZ_11.3.md">11.3 Микросервисы: подходы</a>.
 </p>
+
+<p>
+<a href="https://github.com/PanMonsters/virt-netology/blob/140c108a8c3ce574865db8fcb507a404da7fa92d/DZ_11.4.md">11.4 Микросервисы: масштабирование</a>.
+</p>
+
