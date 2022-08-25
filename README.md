@@ -135,6 +135,6 @@
 </p>
 
 <p>
-<a href="https://github.com/PanMonsters/virt-netology/blob/2ae2ce47856f80161b07e76ae773c5025a0dede1/DZ_11.5.md">12.1 Компоненты Kubernetes</a>.
+<a href="https://github.com/PanMonsters/virt-netology/blob/49821b65e26dcfc1a8c35f731e5f7bda79a42baf/DZ_12.1.md">12.1 Компоненты Kubernetes</a>.
 </p> 
 
