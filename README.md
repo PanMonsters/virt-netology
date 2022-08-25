@@ -134,3 +134,7 @@
 <a href="https://github.com/PanMonsters/virt-netology/blob/140c108a8c3ce574865db8fcb507a404da7fa92d/DZ_11.4.md">11.4 Микросервисы: масштабирование</a>.
 </p>
 
+<p>
+<a href="https://github.com/PanMonsters/virt-netology/blob/2ae2ce47856f80161b07e76ae773c5025a0dede1/DZ_11.5.md">12.1 Компоненты Kubernetes</a>.
+</p> 
+
