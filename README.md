@@ -138,3 +138,8 @@
 <a href="https://github.com/PanMonsters/virt-netology/blob/49821b65e26dcfc1a8c35f731e5f7bda79a42baf/DZ_12.1.md">12.1 Компоненты Kubernetes</a>.
 </p> 
 
+<p>
+<a href="https://github.com/PanMonsters/virt-netology/blob/da746b443d4007da6508554a4dd8644cfffb9790/DZ_12.2%20.md">12.2 Команды для работы с Kubernetes</a>.
+</p> 
+
+
