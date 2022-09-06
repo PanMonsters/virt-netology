@@ -142,4 +142,6 @@
 <a href="https://github.com/PanMonsters/virt-netology/blob/da746b443d4007da6508554a4dd8644cfffb9790/DZ_12.2%20.md">12.2 Команды для работы с Kubernetes</a>.
 </p> 
 
-
+<p>
+<a href="https://github.com/PanMonsters/virt-netology/blob/a032842d02ee3db9ad57a9c903080e82c78d100b/DZ_12.3%20.md">12.3 Развертывание кластера на собственных серверах, лекция 1</a>.
+</p> 
