@@ -145,3 +145,11 @@
 <p>
 <a href="https://github.com/PanMonsters/virt-netology/blob/a032842d02ee3db9ad57a9c903080e82c78d100b/DZ_12.3%20.md">12.3 Развертывание кластера на собственных серверах, лекция 1</a>.
 </p> 
+
+<p>
+<a href="https://github.com/PanMonsters/virt-netology/blob/e5e44a91200c502fb7bae24f7dd569c7d404a980/DZ_12.4%20.md">12.4 Развертывание кластера на собственных серверах, лекция 2</a>.
+</p> 
+
+<p>
+<a href="https://github.com/PanMonsters/virt-netology/blob/e5e44a91200c502fb7bae24f7dd569c7d404a980/DZ_12.5%20.md">12.5 Сетевые решения CNI</a>.
+</p> 
